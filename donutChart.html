@@ -1,0 +1,30 @@
+<<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Class', 'Hours per Day'],
+          ['Cultivating a Collection',     2],
+          ['Web Mapping and GIS',      3.5],
+          ['Language in Society',  1],
+          ['Fundamentals of International Business', 4],
+          ['Film and Literature in Society',    3]
+        ]);
+
+        var options = {
+          title: 'Hours Spent on Homework Per Day',
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="donutchart" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>
