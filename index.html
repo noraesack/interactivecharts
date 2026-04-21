@@ -1,0 +1,60 @@
+<html>
+<head>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    // 1. Load both packages at once
+    google.charts.load("current", {packages:["corechart", "timeline"]});
+    google.charts.setOnLoadCallback(drawCharts);
+
+    function drawCharts() {
+      drawDonut();
+      drawTimeline();
+    }
+
+    function drawDonut() {
+      var data = google.visualization.arrayToDataTable([
+        ['Class', 'Hours per Day'],
+        ['Cultivating a Collection', 2],
+        ['Web Mapping and GIS', 3.5],
+        ['Language in Society', 1],
+        ['Fundamentals of International Business', 4],
+        ['Film and Literature in Society', 3]
+      ]);
+      var options = {
+        title: 'Hours Spent on Homework Per Day',
+        pieHole: 0.4,
+      };
+      var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+      chart.draw(data, options);
+    }
+
+    function drawTimeline() {
+      var container = document.getElementById('timeline');
+      var chart = new google.visualization.Timeline(container);
+      var dataTable = new google.visualization.DataTable();
+      dataTable.addColumn({ type: 'string', id: 'Blooming Season' });
+      dataTable.addColumn({ type: 'string', id: 'Flower' });
+      dataTable.addColumn({ type: 'date', id: 'Start' });
+      dataTable.addColumn({ type: 'date', id: 'End' });
+      dataTable.addRows([
+        [ 'Spring', 'Tulips', new Date (2026, 2,1), new Date (2026, 4,30)],
+        [ 'Summer', 'Zinnias', new Date (2026, 5,21), new Date (2026, 6,10)],
+        [ 'Fall', 'Mums', new Date (2026, 7,21), new Date (2026, 9,4)],
+      ]);
+      chart.draw(dataTable);
+    }
+  </script>
+</head>
+<body>
+  <h2 style="font-family: Arial; text-align: center;">Combined Data Dashboard</h2>
+  
+  <!-- Use display: flex to put them side-by-side -->
+  <div style="display: flex; justify-content: space-around; align-items: flex-start;">
+    <div id="donutchart" style="width: 50%; height: 500px;"></div>
+    <div style="width: 50%;">
+        <h2 style="font-family: Arial; text-align: center; font-size: 18px;">Seasonal Flower Timeline</h2>
+        <div id="timeline" style="height: 400px;"></div>
+    </div>
+  </div>
+</body>
+</html>
